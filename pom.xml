@@ -8,7 +8,7 @@
 		<version>3.4.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.Example</groupId>
+	<groupId>com.Example</groupId>4
 	<artifactId>JWT-Token-Generate</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>JWT-Token-Generate</name>
