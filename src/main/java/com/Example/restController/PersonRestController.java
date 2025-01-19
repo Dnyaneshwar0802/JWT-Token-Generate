@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/personRestController")
 public class PersonRestController {
-
+/*
+This method simply return message
+*/
     @GetMapping("/getMessage")
     public String getMessage() {
         return "Welcome to SB project";
