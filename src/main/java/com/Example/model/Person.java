@@ -14,10 +14,10 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @Column(nullable = false,unique = true)
-    private  String username;
-    private  String password;
+    @Column(nullable = false, unique = true)
+    private String username;
+    private String password;
     private int salary;
-
+    private String role;
 
 }
