@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/personRestController")
 public class PersonRestController {
     @GetMapping("/getMessage")
-    public String getMessage(){
-    return "Welcome to SB project";
+    public String getMessage() {
+        return "Welcome to SB project";
     }
 
 }
