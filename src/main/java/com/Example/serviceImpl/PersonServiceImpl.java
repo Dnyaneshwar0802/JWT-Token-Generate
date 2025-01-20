@@ -6,6 +6,8 @@ import com.Example.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /*
 This is Service Implimentation for person model class
  */
@@ -21,5 +23,11 @@ public class PersonServiceImpl implements PersonService {
     public Person saveData(Person person) {
        Person p= personRepository.save(person);
         return p;
+    }
+
+    @Override
+    public List<Person> getAllData() {
+        List<Person> getAll=personRepository.findAll();
+        return getAll;
     }
 }
