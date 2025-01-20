@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/personRestController")
@@ -27,7 +28,7 @@ public class PersonRestController {
     @PostMapping("/saveData")
     public Person saveData(@RequestBody Person person) {
         System.out.println(person);
-        Person p=personService.saveData(person);
+        Person p = personService.saveData(person);
         return p;
     }
 /*
@@ -36,7 +37,15 @@ Writing Method to see all data
 
     @GetMapping("/getAllData")
     public List<Person> getAllData() {
-          List<Person> allPersonData=personService.getAllData();
+        List<Person> allPersonData = personService.getAllData();
         return allPersonData;
+    }
+
+    @GetMapping("/login/{username}/{password}")
+    public Optional<Person> login(@PathVariable("username") String username,@PathVariable("password") String password) {
+        System.out.println("This is Username"+username +"Ths is pass >>"+password);
+        Optional<Person> p = personService.verify(username, password);
+        return  p;
+
     }
 }
