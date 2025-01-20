@@ -5,6 +5,8 @@ import com.Example.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/personRestController")
 public class PersonRestController {
@@ -27,5 +29,14 @@ public class PersonRestController {
         System.out.println(person);
         Person p=personService.saveData(person);
         return p;
+    }
+/*
+Writing Method to see all data
+*/
+
+    @GetMapping("/getAllData")
+    public List<Person> getAllData() {
+          List<Person> allPersonData=personService.getAllData();
+        return allPersonData;
     }
 }
