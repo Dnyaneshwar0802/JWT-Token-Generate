@@ -4,6 +4,7 @@ import com.Example.model.Person;
 import com.Example.repository.PersonRepository;
 import com.Example.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,12 +18,16 @@ public class PersonServiceImpl implements PersonService {
 
     @Autowired
     PersonRepository personRepository;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     /*
         Method to save Person data into DB
     */
     @Override
     public Person saveData(Person person) {
+        String pass=passwordEncoder.encode(person.getPassword());
+        person.setPassword(pass);
         Person p = personRepository.save(person);
         return p;
     }
