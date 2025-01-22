@@ -28,7 +28,14 @@ public class MySecurityCustomConfig {
     @Bean
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider provider =new DaoAuthenticationProvider();
+       /*
+       Providing password encoder so password can do hashing and match with same strength
+       */
         provider.setPasswordEncoder(passwordEncoder());
+/*
+        IT needed USerDeails Service so we have to implement our own userDetails Service
+        Check config pkg MyCustomUserDetailsService which implement UserDetailsService
+*/
         provider.setUserDetailsService(userDetailsService);
     return provider;
     }
