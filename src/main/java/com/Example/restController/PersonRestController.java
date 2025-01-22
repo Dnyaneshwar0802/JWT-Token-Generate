@@ -41,7 +41,7 @@ Writing Method to see all data
         return allPersonData;
     }
 
-    @GetMapping("/login/{username}/{password}")
+    @GetMapping("/signup/{username}/{password}")
     public Optional<Person> login(@PathVariable("username") String username,@PathVariable("password") String password) {
         System.out.println("This is Username"+username +"Ths is pass >>"+password);
         Optional<Person> p = personService.verify(username, password);
