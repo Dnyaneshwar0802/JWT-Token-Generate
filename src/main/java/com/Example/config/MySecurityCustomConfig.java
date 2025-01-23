@@ -46,7 +46,7 @@ public class MySecurityCustomConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(a -> a.requestMatchers("/personRestController/saveData").permitAll().requestMatchers("/personRestController/getAllData").hasRole("ADMIN").anyRequest().authenticated())
+                .authorizeHttpRequests(a -> a.requestMatchers("/personRestController/saveData","/personRestController/signin").permitAll().requestMatchers("/personRestController/getAllData").hasRole("ADMIN").anyRequest().authenticated())
                 .cors(a -> a.disable())
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults())
