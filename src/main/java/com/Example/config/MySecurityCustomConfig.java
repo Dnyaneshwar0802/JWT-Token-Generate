@@ -19,6 +19,7 @@ public class MySecurityCustomConfig {
     UserDetailsService userDetailsService;
     @Bean
     PasswordEncoder passwordEncoder(){
+        //Bcrypt class will hash password so no one can see and cant be reverse and see orignal pass
         return new BCryptPasswordEncoder(10);
     }
     /*
@@ -45,11 +46,17 @@ public class MySecurityCustomConfig {
     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        //Just disabling CSRF so we can do post requests
         http.csrf(csrf -> csrf.disable())
+                //making some url private/public/authorized
                 .authorizeHttpRequests(a -> a.requestMatchers("/personRestController/saveData","/personRestController/signin").permitAll().requestMatchers("/personRestController/getAllData").hasRole("ADMIN").anyRequest().authenticated())
                 .cors(a -> a.disable())
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults())
+               /* making Sesssion stateless
+                why ? we dont need Session id for mentaining session
+                We use JWT token instead of session id for verification
+                */
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return http.build();
