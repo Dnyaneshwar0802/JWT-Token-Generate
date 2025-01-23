@@ -2,6 +2,7 @@ package com.Example.restController;
 
 import com.Example.model.Person;
 import com.Example.service.PersonService;
+import com.Example.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,6 +19,8 @@ public class PersonRestController {
     PersonService personService;
     @Autowired
     AuthenticationProvider authenticationProvider;
+    @Autowired
+    JWTUtil jwtUtil;
 
     /*
     This method simply return message
@@ -63,7 +66,7 @@ Writing Method to see all data
         if (person.getUsername() != null && person.getPassword() != null) {
             Authentication authentication = authenticationProvider.authenticate(new UsernamePasswordAuthenticationToken(person.getUsername(), person.getPassword()));
             if (authentication.isAuthenticated()) {
-                return "LOGIN SUCCESS !!";
+                return jwtUtil.jwtTokenGenerate(authentication);
             }
             return "Something Wrong !!";
         }
