@@ -1,5 +1,6 @@
 package com.Example.config;
 
+import com.Example.filter.JWTTokenVerify;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
 public class MySecurityCustomConfig {
@@ -53,6 +55,7 @@ public class MySecurityCustomConfig {
                 .cors(a -> a.disable())
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults())
+                .addFilterBefore(new JWTTokenVerify(), BasicAuthenticationFilter.class)
                /* making Sesssion stateless
                 why ? we dont need Session id for mentaining session
                 We use JWT token instead of session id for verification
