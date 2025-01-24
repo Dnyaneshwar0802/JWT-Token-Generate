@@ -1,5 +1,6 @@
 package com.Example.restController;
 
+import com.Example.filter.JWTTokenVerify;
 import com.Example.model.Person;
 import com.Example.service.PersonService;
 import com.Example.util.JWTUtil;
@@ -21,6 +22,8 @@ public class PersonRestController {
     AuthenticationProvider authenticationProvider;
     @Autowired
     JWTUtil jwtUtil;
+    @Autowired
+    JWTTokenVerify jwtTokenSender;
 
     /*
     This method simply return message
