@@ -19,6 +19,10 @@ import java.util.Set;
 public class JWTUtil {
     private String jwtSecretkey = "DGTVCWHSjbn#cfgvnbm$tscxgvz*dcxg!$cvjxcgfvhb#fccghvcx";
 
+    public String getJwtSecretkey() {
+        return jwtSecretkey;
+    }
+
     public String jwtTokenGenerate(Authentication authentication) {
         //converting our own key in Secret Key char []
         SecretKey key = Keys.hmacShaKeyFor(jwtSecretkey.getBytes(StandardCharsets.UTF_8));
